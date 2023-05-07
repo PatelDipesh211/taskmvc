@@ -1,0 +1,36 @@
+﻿@model WebApplication1.Context.TableProduct
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+{
+    <div class="container">
+        <div class="from-group">
+            <label>Product Name</label>
+            @Html.ValidationMessageFor(x => x.ProductName, "", new { @Class = "error" })
+            @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+        </div>
+
+        <div class="from-group">
+            <label>Category Id</label>
+            @Html.ValidationMessageFor(x => x.ProductName, "", new { @Class = "error" })
+            @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control" })
+        </div>
+
+        <div class="from-group">
+            <label>Category Name</label>
+            @Html.ValidationMessageFor(x => x.ProductName, "", new { @Class = "error" })
+            @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn btn-primary"> Submit</button>
+            <button type="reset" class="btn btn btn-danger"> Reset</button>
+        </div>
+
+    </div>
+}
+
+

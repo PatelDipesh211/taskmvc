@@ -1,0 +1,60 @@
+﻿@model List<WebApplication1.Context.TableProduct>
+
+
+@{
+    ViewBag.Title = "ProductList";
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model);
+    int rowVal = 0;
+}
+
+<style type="text/css">
+
+    .h {
+     
+
+    }
+  
+</style>
+
+@*<table class="table-hover table" style="width:100%">
+        <tr>
+            <th class="col">Product Id</th>
+            <th class="col">Product Name</th>
+            <th class="col">Category Id</th>
+            <th class="col">Category Name</th>
+            <th class="col">Action </th>
+        </tr>
+
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.ProductId</td>
+                <td>@i.ProductName</td>
+                <td>@i.CategoryId</td>
+                <td>@i.CategoryName</td>
+                <td></td>
+            </tr>
+        }
+
+    </table>*@
+
+
+@grid.GetHtml(tableStyle: "table table-bordered table-hover",
+    headerStyle: "",
+mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Sr.No.", format: item => rowVal = rowVal + 1),
+    grid.Column("ProductName", "Product Name"),
+    grid.Column("CategoryId", "Category Id"),
+    grid.Column("CategoryName", "Category Name"),
+    grid.Column(header: "Action",
+                format: @<div><a href="/Product/Edit/@item.ProductId" class="btn btn-primary">Edit</a> <a href="/Product/Delete/@item.ProductId" class="btn btn-danger"> Delete</a></div>
+)
+))
+
+
